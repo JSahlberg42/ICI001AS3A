@@ -1,0 +1,15 @@
+---
+- name: Regenerate SSH host keys on cloned slaves
+  hosts: slaves
+  become: true
+  tasks:
+    - name: Remove old host keys
+      ansible.builtin.shell: rm -f /etc/ssh/ssh_host_*
+
+    - name: Generate new host keys
+      ansible.builtin.command: ssh-keygen -A
+
+    - name: Restart SSH service
+      ansible.builtin.service:
+        name: ssh
+        state: restarted

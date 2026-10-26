@@ -1,0 +1,9 @@
+---
+- name: Install basic system utilities
+  become: true
+  ansible.builtin.apt:
+    name:
+      - tree
+      - traceroute
+    state: present
+    update_cache: true

@@ -1,0 +1,8 @@
+---
+- name: Set correct hostnames for slave machines
+  hosts: slaves
+  become: true
+  tasks:
+    - name: Update hostname to match inventory name
+      ansible.builtin.hostname:
+        name: "{{ inventory_hostname }}"
