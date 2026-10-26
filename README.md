@@ -1,2 +1,4 @@
 # ICI001AS3A
-Palvelinta hallinta
+Palvelinten hallinta at Haaga-Helia
+
+https://opinto-opas.haaga-helia.fi/course/ICI001AS3A
