@@ -23,9 +23,7 @@
 - name: modify REMINDER.txt file permissions and ownership
   ansible.builtin.file:
     path: /tmp/REMINDER.txt
-    state: touch
     owner: root
     group: sudoless
     mode: '0666'  # -rw-rw-rw- everyone can read and write!
   become: true
-  
