@@ -1,0 +1,13 @@
+---
+- name: Create group sudoless
+  ansible.builtin.group:
+    name: sudoless
+    state: present
+
+- name: Create user antero
+  ansible.builtin.user:
+    name: antero
+    state: present
+    groups: sudoless
+    append: yes # If `false', user will only be added to the groups specified in `groups'
+    comment: "Antero will be our future superhero"

@@ -1,6 +1,7 @@
 - hosts: all
   roles:
     - hello
+    - users
     - basic_tools
     - host_config
 
