@@ -6,5 +6,6 @@
       - tree
       - traceroute
       - htop
+      - curl
     state: present
     update_cache: true

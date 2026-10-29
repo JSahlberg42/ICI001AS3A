@@ -2,6 +2,7 @@
   roles:
     - hello
     - basic_tools
+    - host_config
 
 - hosts: web_servers
   roles:
