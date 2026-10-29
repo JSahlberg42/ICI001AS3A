@@ -1,0 +1,8 @@
+---
+- name: Install web server stuff
+  become: true
+  ansible.builtin.apt:
+    name:
+      - apache2
+    state: present
+    update_cache: true

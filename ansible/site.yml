@@ -2,3 +2,12 @@
   roles:
     - hello
     - basic_tools
+
+- hosts: web_servers
+  roles:
+    - web_server_stuff
+
+- hosts: db_servers
+  roles:
+    - db_server_stuff
+

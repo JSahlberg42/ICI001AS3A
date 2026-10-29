@@ -1,0 +1,8 @@
+---
+- name: Install db server stuff
+  become: true
+  ansible.builtin.apt:
+    name:
+      - postgresql-17
+    state: present
+    update_cache: true
