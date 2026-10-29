@@ -7,5 +7,6 @@
       - traceroute
       - htop
       - curl
+      - finger
     state: present
     update_cache: true

@@ -11,3 +11,10 @@
     groups: sudoless
     append: yes # If `false', user will only be added to the groups specified in `groups'
     comment: "Antero will be our future superhero"
+
+- name: SSH key for antero
+  ansible.builtin.authorized_key:
+    user: antero
+    state: present
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDH8GcP4UEnd2gvNqXJcuX+h6uMJMaBwIrmpOmgr4M9T jude@debiili"
+    

@@ -7,3 +7,25 @@
     group: root
     mode: '0644'
   become: true
+
+- name: Add sudoless definition to sudoers
+  ansible.builtin.copy:
+    dest: /etc/sudoers.d/sudoless
+    content: "%sudoless ALL=(ALL) NOPASSWD: ALL"
+    validate: 'visudo -cf %s'
+  become: true
+
+- name: Create REMINDER.txt file in /tmp
+  ansible.builtin.copy:
+    content: "Rule one: don't screw up\nRule two: always check twice\nRule three: never forget rule one\n"
+    dest: /tmp/REMINDER.txt
+
+- name: modify REMINDER.txt file permissions and ownership
+  ansible.builtin.file:
+    path: /tmp/REMINDER.txt
+    state: touch
+    owner: root
+    group: sudoless
+    mode: '0666'  # -rw-rw-rw- everyone can read and write!
+  become: true
+  
