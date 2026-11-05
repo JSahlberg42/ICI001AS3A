@@ -1,0 +1,30 @@
+Nov 05 19:23:14 debiili sudo[3257]:     jude : TTY=pts/1 ; PWD=/home/jude/tmp/diudiu ; USER=root ; COMMAND=/usr/bin/jou>
+Nov 05 18:07:38 debiili systemd[1]: Started caddy.service - Caddy.
+Nov 05 18:07:38 debiili caddy[3100]: {"level":"info","ts":1793894858.1812694,"msg":"autosaved config (load with --resum>
+Nov 05 18:07:38 debiili caddy[3100]: {"level":"info","ts":1793894858.1812215,"logger":"tls","msg":"cleaning storage uni>
+Nov 05 18:07:38 debiili caddy[3100]: {"level":"info","ts":1793894858.1790438,"msg":"using provided configuration","conf>
+Nov 05 18:07:38 debiili caddy[3100]: MEMORY_PRESSURE_WATCH=/sys/fs/cgroup/system.slice/caddy.service/memory.pressure
+Nov 05 18:07:38 debiili caddy[3100]: HOME=/var/lib/caddy
+Nov 05 18:07:38 debiili caddy[3100]: LOGNAME=caddy
+Nov 05 18:07:38 debiili caddy[3100]: USER=caddy
+Nov 05 18:07:38 debiili caddy[3100]: caddy.Version=2.6.2
+Nov 05 18:07:38 debiili caddy[3100]: caddy.ConfigAutosavePath=/var/lib/caddy/.config/caddy/autosave.json
+Nov 05 18:07:38 debiili caddy[3100]: caddy.AppConfigDir=/var/lib/caddy/.config/caddy
+Nov 05 18:07:38 debiili caddy[3100]: caddy.AppDataDir=/var/lib/caddy/.local/share/caddy
+Nov 05 18:07:38 debiili caddy[3100]: caddy.HomeDir=/var/lib/caddy
+Nov 05 18:07:38 debiili systemd[1]: Starting caddy.service - Caddy...
+Nov 05 18:07:38 debiili systemd[1]: Stopped caddy.service - Caddy.
+Nov 05 18:07:38 debiili systemd[1]: caddy.service: Deactivated successfully.
+Nov 05 18:07:38 debiili systemd[1]: Stopping caddy.service - Caddy...
+Nov 05 18:07:38 debiili sudo[3090]:     jude : TTY=pts/1 ; PWD=/home/jude/ansible ; USER=root ; COMMAND=/usr/bin/system>
+Nov 05 18:06:15 debiili ansible-ansible.legacy.file[3068]: Invoked with dest=/usr/share/caddy/index.html _original_base>
+Nov 05 18:06:15 debiili ansible-ansible.legacy.stat[3049]: Invoked with path=/usr/share/caddy/index.html follow=False g>
+Nov 05 18:06:14 debiili ansible-ansible.builtin.apt[2997]: Invoked with name=['caddy'] state=present update_cache=True >
+Nov 05 18:03:29 debiili ansible-ansible.legacy.copy[2806]: Invoked with dest=/usr/share/caddy/index.html src=/home/jude>
+Nov 05 18:03:29 debiili ansible-ansible.legacy.stat[2780]: Invoked with path=/usr/share/caddy/index.html follow=False g>
+Nov 05 18:03:28 debiili ansible-ansible.builtin.apt[2728]: Invoked with name=['caddy'] state=present update_cache=True >
+Nov 05 17:49:52 debiili systemd[1]: Started caddy.service - Caddy.
+Nov 05 17:49:52 debiili caddy[2186]: {"level":"info","ts":1793893792.8855944,"logger":"tls","msg":"cleaning storage uni>
+Nov 05 17:49:52 debiili caddy[2186]: {"level":"info","ts":1793893792.8854628,"msg":"autosaved config (load with --resum>
+Nov 05 17:49:52 debiili caddy[2186]: {"level":"info","ts":1793893792.8839843,"msg":"using provided configuration","conf>
+Nov 05 17:49:52 debiili caddy[2186]: MEMORY_PRESSURE_WATCH=/sys/fs/cgroup/system.slice/caddy.service/memory.pressure
