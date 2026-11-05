@@ -1,8 +1,36 @@
 ---
-- name: Install web server stuff
+- name: Install caddy web server
   become: true
   ansible.builtin.apt:
     name:
-      - apache2
+      - caddy
     state: present
     update_cache: true
+
+- name: enable caddy service
+  become: true
+  ansible.builtin.service:
+    name: caddy
+    state: started
+    enabled: true
+
+- name: replace default web page
+  become: true
+  ansible.builtin.copy:
+    content: |
+      <html>
+      <head>
+      <title>My awesome web page</title>
+      </head>
+      <body>
+      foo and bar...
+      </body>
+      </html>
+    dest: /usr/share/caddy/index.html
+
+- name: restart caddy service
+  become: true
+  ansible.builtin.service:
+    name: caddy
+    state: restarted
+
