@@ -4,7 +4,7 @@
 
 ### Karvinen 2026: Apache installed with Ansible - quick notes
     
-Article describes hot to install package using `apt` tool, manipulation of configuration files and service state
+Article describes hot to install package using `apt` tool, manipulation of configuration files and service state. (Karvinen T, 2026)
 
 ### Ansible Community Documentation: Handlers: running operations on change
 
@@ -14,7 +14,7 @@ Handlers are handy when there's no need run command or do something everytime wh
 
 The module is used to manipulate services running into target system. Target systems may have for example systemd or SysV style application which orchestrating services. 
 
-Option `enabled`means the service should be started after system boots up. Option `name` in required. With `state` is possible to maintain idempotency of the service. `EXAMPLES` section shows easy copy'n'paste sniplets what to use in own tasks or handlers.
+Option `enabled`means the service should be started after system boots up. Option `name` in required. With `state` is possible to maintain idempotency of the service. `EXAMPLES` section shows easy copy'n'paste sniplets what to use in own tasks or handlers. (Ansible Community Documentation, 2026)
 
 ## a) Apassi
 
@@ -533,6 +533,6 @@ Karvinen T, 2026. [Apache installed with Ansible - quick notes](https://terokarv
 
 Karvinen T, 2026. Sudo without password. https://terokarvinen.com/passwordless-sudo/. Read 5.11.2026.
 
-Ansible Community Documentation:  [Handlers: running operations on change](https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_handlers.html). Read 5.11.2026
+Ansible Community Documentation, 2026:  [Handlers: running operations on change](https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_handlers.html). Read 5.11.2026
 
 Ansible-doc: copy|apt|file|user|authorized_key|template
