@@ -1,36 +1,30 @@
 ---
-- name: Install caddy web server
+- name: Install nginx
   become: true
   ansible.builtin.apt:
     name:
-      - caddy
+      - nginx
     state: present
     update_cache: true
 
-- name: enable caddy service
+- name: enable nginx service
   become: true
   ansible.builtin.service:
-    name: caddy
+    name: nginx
     state: started
     enabled: true
 
-- name: replace default web page
+- name: replace default web page and set permissions to world-writable
   become: true
   ansible.builtin.copy:
-    content: |
-      <html>
-      <head>
-      <title>My awesome web page</title>
-      </head>
-      <body>
-      foo and bar...
-      </body>
-      </html>
-    dest: /usr/share/caddy/index.html
+    src: "index.html"
+    dest: "/var/www/html/index.html"
+    mode: '0666'
+  notify: restart nginx service
 
-- name: restart caddy service
+- name: replace default web root directory permission to world-writable
   become: true
-  ansible.builtin.service:
-    name: caddy
-    state: restarted
-
+  ansible.builtin.file:
+    path: "/var/www/html"
+    mode: '0777'
+  notify: restart nginx service
