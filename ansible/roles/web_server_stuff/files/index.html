@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="color-scheme" content="dark">
+	<title>Server Farm | Welcome</title>
+	<style>
+		:root { color-scheme: dark; font-family: system-ui, sans-serif; background: #080e1c; color: #eef4ff; }
+		* { box-sizing: border-box; }
+		body { margin: 0; min-height: 100vh; background: radial-gradient(ellipse at 80% 10%, #16375c 0, transparent 50%), radial-gradient(ellipse at 10% 90%, #173c36 0, transparent 45%), #080e1c; }
+		.container { width: min(1100px, 100% - 48px); margin: auto; }
+		header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 32px 0; border-bottom: 1px solid #ffffff18; }
+		.brand { font-weight: 750; letter-spacing: .08em; }
+		.brand span { color: #6ee7b7; }
+		.badge { border: 1px solid #6ee7b744; border-radius: 999px; padding: 8px 14px; color: #a7f3d0; font-size: .8rem; }
+		main { padding: 76px 0 60px; }
+		.eyebrow { color: #6ee7b7; text-transform: uppercase; letter-spacing: .2em; font-size: .75rem; font-weight: 700; }
+		h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); letter-spacing: -.055em; line-height: 1.05; margin: 20px 0; }
+		h1 span { color: #93c5fd; }
+		.intro { max-width: 600px; color: #aebed5; font-size: 1.15rem; line-height: 1.7; }
+		.actions { display: flex; flex-wrap: wrap; gap: 14px; margin: 30px 0 52px; }
+		.button { display: inline-block; text-decoration: none; padding: 13px 22px; border-radius: 10px; background: #6ee7b7; color: #08241b; font-weight: 700; transition: transform .2s; }
+		.button.secondary { color: #eef4ff; background: #ffffff0a; border: 1px solid #ffffff26; }
+		.button:hover { transform: translateY(-2px); }
+		a:focus-visible { outline: 3px solid #93c5fd; outline-offset: 5px; }
+		.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+		.card { padding: 28px; border: 1px solid #ffffff18; border-radius: 16px; background: #101c2dcc; }
+		.icon { font-family: monospace; color: #6ee7b7; font-size: 1.6rem; }
+		h2 { font-size: 1.1rem; margin: 20px 0 10px; }
+		.card p { color: #aebed5; line-height: 1.65; margin: 0; }
+		.connection { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding: 20px 24px; margin-top: 24px; border: 1px solid #ffffff18; border-radius: 12px; color: #aebed5; font-size: .9rem; }
+		code { color: #93c5fd; overflow-wrap: anywhere; }
+		footer { padding: 24px 0; border-top: 1px solid #ffffff18; color: #8193ae; font-size: .8rem; }
+		@media (max-width: 700px) { .grid { grid-template-columns: 1fr; } main { padding-top: 48px; } header { flex-wrap: wrap; } }
+		@media (prefers-reduced-motion: reduce) { .button { transition: none; } }
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<header>
+			<div class="brand"><span aria-hidden="true">▥</span> SERVER FARM</div>
+			<div class="badge">Welcome endpoint</div>
+		</header>
+		<main>
+			<p class="eyebrow">Infrastructure starts here</p>
+			<h1>Many servers.<br><span>One front door.</span></h1>
+			<p class="intro">Welcome to your web server farm. A clean landing zone for your infrastructure, applications, and everything you build next.</p>
+			<nav class="actions" aria-label="Page navigation">
+				<a class="button" href="#overview">Explore the farm <span aria-hidden="true">→</span></a>
+				<a class="button secondary" href="#connection">Connection details</a>
+			</nav>
+			<section class="grid" id="overview" aria-label="Infrastructure overview">
+				<article class="card">
+					<div class="icon" aria-hidden="true">[≡]</div>
+					<h2>Built to serve</h2>
+					<p>A starting point for the websites and services hosted across your infrastructure.</p>
+				</article>
+				<article class="card">
+					<div class="icon" aria-hidden="true">&lt;/&gt;</div>
+					<h2>Ready for automation</h2>
+					<p>Manage this welcome page alongside your server configuration with Ansible.</p>
+				</article>
+				<article class="card">
+					<div class="icon" aria-hidden="true">{…}</div>
+					<h2>Room to grow</h2>
+					<p>Make this your own with links to applications, documentation, and monitoring tools.</p>
+				</article>
+			</section>
+			<section class="connection" id="connection" aria-label="Browser connection details">
+				<span>Requested host: <code id="hostname">See your browser address bar</code></span>
+				<span>Protocol: <code id="protocol">See your browser address bar</code></span>
+			</section>
+		</main>
+		<footer>SERVER FARM · Your infrastructure. Your launchpad.</footer>
+	</div>
+	<script>
+		document.getElementById('hostname').textContent = window.location.host || 'Local preview';
+		document.getElementById('protocol').textContent = window.location.protocol.replace(':', '').toUpperCase();
+	</script>
+</body>
+</html>
