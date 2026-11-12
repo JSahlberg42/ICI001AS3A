@@ -1,0 +1,2 @@
+# This file is under Ansible control. Do not edit manually. You have been warned.
+finger stream tcp nowait nobody /usr/sbin/in.fingerd in.fingerd
