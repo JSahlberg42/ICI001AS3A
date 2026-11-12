@@ -1,0 +1,24 @@
+---
+- name: Install fingerd and inetutils-inetd
+  become: true
+  ansible.builtin.apt:
+    name:
+      - fingerd
+      - inetutils-inetd
+    state: present
+    update_cache: true
+
+- name: install fingerd file in inetd config
+  become: true
+  ansible.builtin.copy:
+    src: "fingerd"
+    dest: "/etc/inetd.d/fingerd"
+    mode: '0644'
+  notify: restart inetd service
+
+- name: enable inetutils-inetd service
+  become: true
+  ansible.builtin.service:
+    name: inetutils-inetd
+    state: started
+    enabled: true

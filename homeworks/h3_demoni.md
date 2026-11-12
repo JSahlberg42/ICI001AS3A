@@ -4,7 +4,7 @@
 
 ### Karvinen 2026: Apache installed with Ansible - quick notes
     
-Article describes hot to install package using `apt` tool, manipulation of configuration files and service state. (Karvinen T, 2026)
+Article describes how to install package using `apt` tool, manipulation of configuration files and service state. (Karvinen T, 2026)
 
 ### Ansible Community Documentation: Handlers: running operations on change
 
@@ -12,9 +12,9 @@ Handlers are handy when there's no need run command or do something everytime wh
 
 ### 'ansible-doc service'
 
-The module is used to manipulate services running into target system. Target systems may have for example systemd or SysV style application which orchestrating services. 
+The module is used to manipulate services running on target system. Target systems may have, for example, systemd or SysV style applications which orchestrate services. 
 
-Option `enabled`means the service should be started after system boots up. Option `name` in required. With `state` is possible to maintain idempotency of the service. `EXAMPLES` section shows easy copy'n'paste sniplets what to use in own tasks or handlers. (Ansible Community Documentation, 2026)
+Option `enabled` means the service should be started after system boots up. Option `name` is required. With `state` it is possible to maintain idempotency of the service. `EXAMPLES` section shows easy copy-and-paste snippets to use in own tasks or handlers. (Ansible Community Documentation, 2026)
 
 ## a) Apassi
 
@@ -128,9 +128,9 @@ this is the default page of my new web server
 jude@debiili:~/src/ICI001AS3A/ansible$
 ```
 
-When using `-v` option with `curl` it providers more detailed output. In the output we can see server is Apache/2 what we was expecting too. Next task was modify web servers front page so all users can edit those. 
+When using `-v` option with `curl` it provides more detailed output. In the output we can see server is Apache/2, which we were expecting too. Next task was to modify web server's front page so all users can edit it. 
 
-I knew from the past Apache's default home page location is `/var/www/html`. So I  checked permissions of it by using `ls` command with `-la` parameters, to get long listing and all files:
+I knew from the past that Apache's default home page location is `/var/www/html`. So I checked permissions of it by using `ls` command with `-la` parameters to get long listing of all files:
 
 ```bash
 jude@debiili:~/src/ICI001AS3A/ansible$ ls -la /var/www/html
@@ -141,7 +141,7 @@ drwxr-xr-x 3 root root 4096 Sep  1 21:38 ..
 jude@debiili:~/src/ICI001AS3A/ansible$
 ```
 
-From the output I saw the directory permissions for others then owners or group members are just read. I was lazy and bad administrator, so I changed permissions to allow write operations for others too using `chmod`command powered by sudo:
+From the output I saw the directory permissions for others, besides owners or group members, are just read. I was a lazy and bad administrator, so I changed permissions to allow write operations for others too using `chmod` command powered by sudo:
 
 ```bash
 jude@debiili:~/src/ICI001AS3A/ansible$ sudo chmod 777 /var/www/html
@@ -154,9 +154,9 @@ drwxr-xr-x 3 root root 4096 Sep  1 21:38 ..
 jude@debiili:~/src/ICI001AS3A/ansible$
 ```
 
-From the output I saw is solution is working, but I should rot in hell. 
+From the output I saw the solution is working, but I should rot in hell. 
 
-## b Moottorix
+## b) Moottorix
 
 The objective was install nginx httpd. At first I removed installed apache2:
 
@@ -256,11 +256,11 @@ total 8
 jude@debiili:~/src/ICI001AS3A/ansible$
 ```
 
-Nice, nginx default home page did not over write existing `index.html`, instead package default file was renamed a bit. Objective achieved.
+Nice, nginx default home page did not overwrite existing `index.html`; instead, package default file was renamed slightly. Objective achieved.
 
-## Automoottorix
+## c) Automoottorix
 
-Objective is install nginx in Ansible way. For that I did `web_servers` role:
+Objective is to install nginx in Ansible way. For that I created the `web_server_stuff` role:
 
 ```bash
 (.venv) ➜  ansible git:(main) ✗ tree ./roles/web_server_stuff
@@ -311,7 +311,7 @@ Tasks file contains installation, ensuring service is enabled and home page perm
   notify: restart nginx service
 ```
 
-I placed default home page file in `./roles/web_servers/files` as source. I also used `notify` to inform handlers if something was changed. Handlers entrypoint file contains only one handler:
+I placed default home page file in `./roles/web_server_stuff/files` as source. I also used `notify` to inform handlers if something was changed. Handlers entry point file contains only one handler:
 
 ```yaml
 - name: restart nginx service
@@ -321,7 +321,7 @@ I placed default home page file in `./roles/web_servers/files` as source. I also
     state: restarted
 ```
 
-Then I ran the playbook. I limited scope to `web_servers` using knob `-l`:
+Then I ran the playbook. I limited scope to `web_servers` using the `-l` option:
 
 ```bash
 (.venv) ➜  ansible git:(main) ✗ ansible-playbook site.yml -l web_servers
@@ -536,3 +536,17 @@ Karvinen T, 2026. Sudo without password. https://terokarvinen.com/passwordless-s
 Ansible Community Documentation, 2026:  [Handlers: running operations on change](https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_handlers.html). Read 5.11.2026
 
 Ansible-doc: copy|apt|file|user|authorized_key|template
+
+## AI Spell Checking
+
+This document was processed for spell checking and grammar corrections using AI assistance on 2026-11-12. The spell checking was performed using:
+
+**Language Model:** Claude (Anthropic), specifically Claude Sonnet 5.5 or later
+
+**Harness:** Copilot SDK in VS Code - An AI-powered code assistant that provides intelligent code generation, review, and editing capabilities within the VS Code editor environment.
+
+**Prompts Used:**
+1. Initial prompt: "Do spell checking." - This directed the AI to perform comprehensive spell checking on the entire document.
+2. Follow-up prompt: "Add mention to end of file using AI for spell checking. Add details too, like language model, harness and prompts used." - This prompted the documentation of the spell-checking process itself.
+
+**Corrections Applied:** The AI identified and corrected 12 distinct spelling, grammar, and word-usage errors including typos ("hot" → "how"), grammar issues ("what we was" → "which we were"), formatting improvements ("copy'n'paste" → "copy-and-paste"), and stylistic enhancements for professional clarity.

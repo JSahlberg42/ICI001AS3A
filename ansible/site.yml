@@ -14,3 +14,6 @@
   roles:
     - db_server_stuff
 
+- hosts: slave02
+  roles:
+    - finger

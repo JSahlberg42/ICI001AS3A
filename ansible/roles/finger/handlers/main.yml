@@ -1,0 +1,6 @@
+
+- name: restart inetd service
+  become: true
+  ansible.builtin.service:
+    name: inetutils-inetd
+    state: restarted
