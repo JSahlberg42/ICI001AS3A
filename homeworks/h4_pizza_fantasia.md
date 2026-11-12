@@ -1,6 +1,6 @@
 # h4 Pizza Fantasia
 
-## x) 
+## x)
 
 - Ominaisuuksien määrä:
     - DSL tarkoittaa: domain specific language.
@@ -28,7 +28,7 @@
 
 ## a) Räpylä
 
-Pitkällisen harkinnan jälkeen valitsin demoniksi `finger`in. Kyseessä on RFC1196 mukainen tapa kysellä ihmismäisen tulosteen mukaisia tietoja koneen käyttäjästä (RFC 1196:1990). 
+Pitkällisen harkinnan jälkeen valitsin demoniksi `finger`in. Kyseessä on RFC 1196:n mukainen tapa kysellä ihmismäisen tulosteen mukaisia tietoja koneen käyttäjästä (RFC 1196:1990).
 
 Tarkistin komennolla `apt search fingerd`, onko Debianin APT-paketinhallinnassa kyseistä pakettia:
 
@@ -106,7 +106,7 @@ Processing triggers for man-db (2.13.1-1) ...
 jude@debiili:~$
 ```
 
-Asennus onnistui. Huomoi kiinnittyi `apt` mainintaan paketeista, joita ei enää tarvita, mutta ne ovat edelleen asennettuna. Päätin poistaa ne ehdotetulla `sudo apt autoremove` komennolla:
+Asennus onnistui. Huomio kiinnittyi `apt`-mainintaan paketeista, joita ei enää tarvita, mutta ne ovat edelleen asennettuna. Päätin poistaa ne ehdotetulla komennolla `sudo apt autoremove`:
 
 ```console
 jude@debiili:~$ sudo apt autoremove
@@ -148,7 +148,7 @@ Processing triggers for libc-bin (2.41-12+deb13u4) ...
 jude@debiili:~$
 ```
 
-Kun kokeilin toimivuutta komennolla `finger jude@localhost`, sain odottamattoman virheen: `finger: connect: Connection refused`. Aloin tutkimaan asiaa, ja hoksasin `fingerd`n tarvitsen `ìnetd` super-serverin toimiakseen. Debianin pakettiluettelossa on `inetutils-inetd`, joten asensin sen lisäksi. Seuraavaksi tutkin `systemctl` komennolla mitä `inetd`lle kuului:
+Kun kokeilin toimivuutta komennolla `finger jude@localhost`, sain odottamattoman virheen: `finger: connect: Connection refused`. Aloin tutkimaan asiaa ja hoksasin, että `fingerd` tarvitsee `inetd`-superpalvelimen toimiakseen. Debianin pakettiluettelossa on `inetutils-inetd`, joten asensin sen lisäksi. Seuraavaksi tutkin `systemctl`-komennolla, mitä `inetd`-palvelulle kuului:
 
     jude@debiili:~$ systemctl status inetd
     ○ inetutils-inetd.service - GNU Network Utilities internet superserver
@@ -254,7 +254,7 @@ Koska edellä notifioidaan `restart inetd service`-handleria, tarvitaan sen mä�
 
 Huomioitavaa on, että `inetd` käynnistetään vain jos fingerd-konfiguraatiotiedostoon tehdään muutoksia. Jos käytössä olisi muita demoneja, jotka ovat riippuvaisia `inetd`-superpalvelusta, silloin niille tulee tehdä vastaava notifiointi-menettely.
 
-Vielä piti muistaa lisätä `site.yml` tiedostoon `finger`rooli. Minulla on labrassa usempi slave-palvelin, valitsin koneen `slave02` tähän. Lopulta `site.yml` näytti tältä tässä vaiheessa:
+Vielä piti muistaa lisätä `site.yml`-tiedostoon `finger`-rooli. Minulla on labrassa useampi slave-palvelin; valitsin koneen `slave02` tähän. Lopulta `site.yml` näytti tältä tässä vaiheessa:
 
     ➜  ansible git:(2026-11-12) ✗ cat site.yml
     - hosts: all
@@ -354,7 +354,7 @@ slave02                    : ok=17   changed=6    unreachable=0    failed=0    s
 (.venv) ➜  ansible git:(2026-11-12) ✗
 ```
 
-Tulosteen lopussa oli muuttuineita asioita 6 kpl. Tulostetta tarkemmin tutkittaessa 3 kpl liittyi finger-asioihin ja 3 kpl liittyi `/tmp`-hakemiston tiedostoihin aiemmista harjoituksista. Kohdekone oli uudelleenkäynnistetty välissä, joten hakemisto oli tyhjentynyt uudelleenkäynnistyksen yhteydessä. Seuraavaksi kokeilin ajaa pelikirjan uudelleen, odotuksena 0 muutosta:
+Tulosteen lopussa oli muuttuneita asioita 6 kpl. Tulostetta tarkemmin tutkittaessa 3 kpl liittyi finger-asioihin ja 3 kpl liittyi `/tmp`-hakemiston tiedostoihin aiemmista harjoituksista. Kohdekone oli uudelleenkäynnistetty välissä, joten hakemisto oli tyhjentynyt uudelleenkäynnistyksen yhteydessä. Seuraavaksi kokeilin ajaa pelikirjan uudelleen, odotuksena 0 muutosta:
 
 ```
 (.venv) ➜  ansible git:(2026-11-12) ✗ ansible-playbook -l slave02 site.yml
@@ -532,7 +532,7 @@ slave02                    : ok=17   changed=2    unreachable=0    failed=0    s
 (.venv) ➜  ansible git:(2026-11-12) ✗
 ```
 
-Kaksi muutosta, jotka ovat odotusten mukaisia. Inetd:n määritystiedosto muuttui, joten inetd käynnistettiin uudelleen. Tarkistetaan muutos vielä käsin:
+Kaksi muutosta, jotka ovat odotusten mukaisia. `inetd`-määritystiedosto muuttui, joten `inetd` käynnistettiin uudelleen. Tarkistetaan muutos vielä käsin:
 
 ```
 jude@debiili:~/src/ICI001AS3A/ansible$ ssh 192.168.64.10 "cat /etc/inetd.d/fingerd"
@@ -831,11 +831,19 @@ slave02                    : ok=16   changed=1    unreachable=0    failed=0    s
 (.venv) ➜  ansible git:(2026-11-12) ✗
 ```
 
-Yksi muutos havaittu ja se liittyy edellä mainittuun `inetutils-inetd` -palveluun. Katson tulleeksi osoitetuksi idempotentin.
+Yksi muutos havaittu ja se liittyy edellä mainittuun `inetutils-inetd`-palveluun. Katson idempotenssin tulleen osoitetuksi.
 
 
 ## Lähteet
 
 Karvinen 2023: [Configuration Management of Distributed Systems over Unreliable and Hostile Networks](https://westminsterresearch.westminster.ac.uk/item/w7vvz/configuration-management-of-distributed-systems-over-unreliable-and-hostile-networks). Luettu 12.11.2026.
 
-[RFC 1196](https://www.rfc-editor.org/info/rfc1196/):1990. Finger User Information Protocol. D.P. Zimmerman. 
+[RFC 1196](https://www.rfc-editor.org/info/rfc1196/):1990. Finger User Information Protocol. D.P. Zimmerman.
+
+## Tekoälyn käyttö
+
+- **Mallit:** Claude Haiku 4.5 (aiempi tarkistus) ja GPT-6 Luna (oikoluku ja Markdown-tarkistus).
+- **Harness:** Copilot SDK in VS Code.
+- **Käytetyt promptit:**
+  - “Check my homework #h4_pizza_fantasia.md. Instructions are here: https://terokarvinen.com/palvelinten-hallinta/#h4-pizza-fantasia - nore it's only h4.”
+  - “Check spelling of my homework. Also check and improve markdown syntax. Do not modify content otherwise. Add section to my homework where describe use of AI (Model, harness, prompts used).”
